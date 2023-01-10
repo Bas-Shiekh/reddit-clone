@@ -46,7 +46,7 @@ export class Users extends Model<IUsers> {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: true,
   })
   gender: string;
 

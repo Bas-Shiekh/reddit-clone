@@ -8,14 +8,19 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 export class RtStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
   constructor(private configService: ConfigService) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (request: Request) => {
+          const secretData = request?.cookies?.token;
+          return secretData;
+        },
+      ]),
       secretOrKey: configService.get('RT_SECRET'),
       passReqToCallback: true,
     });
   }
 
   validate(req: Request, payload: any) {
-    const refreshToken = req.get('authorization').replace('Bearer', '').trim();
+    const refreshToken = req.cookies.token;
     return {
       refreshToken,
       ...payload,

@@ -39,6 +39,11 @@ export class AuthServices {
     return tokens;
   }
 
+  async getAuthUser(userId: number) {
+    const userData = await this.userServices.getUserById(userId);
+    return userData;
+  }
+
   // get user method for login route
   async getUser(loginData: FindUserDto): Promise<ITokens> {
     const userData = await this.userServices.emailCheck(loginData.email);
@@ -111,7 +116,7 @@ export class AuthServices {
         { id: userId, email, username },
         {
           secret: this.configService.get('AT_SECRET'),
-          expiresIn: 60 * 15,
+          expiresIn: 60 * 5,
         },
       ),
     ]);

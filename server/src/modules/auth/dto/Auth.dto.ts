@@ -15,13 +15,9 @@ export class CreateUserDto {
   password: string;
 
   @IsNotEmpty()
-  gender: string;
-
-  @IsNotEmpty()
-  dateOfBirth: string;
-
-  userImg: string;
-  bio: string;
+  @MinLength(8)
+  @MaxLength(40)
+  confirmPassword: string;
 }
 
 export class FindUserDto {

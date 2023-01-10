@@ -1,0 +1,217 @@
+/* #header STYLE STARTS */
+
+#header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 2rem;
+  background-color: var(--white);
+  box-shadow: 0 2px 1px 0 var(--shadow-color);
+  z-index: 1000;
+  border-bottom: 1px solid #EDEFF1;
+}
+
+#header > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#header > div:nth-child(1) a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: var(--black);
+  gap: 0.5rem;
+}
+
+#header > div:nth-child(1) h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+#header div:nth-child(1) span {
+  color: var(--main-color);
+}
+
+#header > div:nth-child(2) {
+  position: relative;
+  width: 40%;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+#header > div:nth-child(2) input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 3rem;
+  font-size: 0.9rem;
+  border: 0;
+  outline: 0;
+  box-shadow: 0 2px 4px 0 var(--shadow-color);
+  background-color: var(--search-color);
+}
+
+#header > div:nth-child(2) input::placeholder {
+  color: var(--second-search-color);
+}
+
+#header > div:nth-child(2):hover {
+  outline: 1px solid var(--blue);
+}
+
+#header > div:nth-child(2):hover input{
+  background-color: inherit;
+}
+
+#header > div:nth-child(3) {
+  gap: 1rem;
+}
+
+#header #login-btn {
+  background-color: var(--main-color);
+  text-transform: capitalize;
+  flex-shrink: 0;
+  color: var(--white);
+  border-radius: 30px;
+  padding: 0.4rem 2rem;
+  border: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+#header #login-btn:hover {
+  background-color: #df3b00;
+}
+
+#header div.profile-cont {
+  position: relative;
+}
+
+#header div.profile-cont:hover {
+  cursor: pointer;
+}
+
+#header div.profile-cont #drop {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+#header div#profile-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+#header div#profile-info p {
+  font-size: 1.1rem;
+}
+
+#header div#profile-info div {
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+#header div#profile-info div img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+#header div#profile-info div label {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 10px;
+  height: 10px;
+  background-color: #00c608;
+  border-radius: 50%;
+}
+
+#header #drop-down {
+  position: absolute;
+  right: 0;
+  top: 130%;
+  width: 140%;
+  background-color: var(--second-color);
+  list-style: none;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  box-shadow: 0 2px 4px 0 rgb(132, 132, 132);
+  z-index: 5000;
+}
+
+#header #drop-down li:nth-child(1) {
+  border-top: 0.5px solid #dddddd;
+}
+
+#header #drop-down li {
+  padding: 0.8rem 1rem;
+  width: 100%;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  border-bottom: 0.5px solid #dddddd;
+  color: var(--name-color);
+  display: flex;
+  align-items: center;
+}
+
+#header #drop-down li:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+#header #drop-down li > div {
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#header #drop-down li > div >* {
+  flex-shrink: 0;
+}
+
+#header #drop-down .checked {
+  width: 40px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0.3rem;
+  border-radius: 30px;
+  justify-content: flex-end;
+  transition: all 0.5s ease-in-out;
+}
+
+#header #drop-down .checked .circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--second-color);
+}
+
+#header #drop-down li i {
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  opacity: 0.8;
+}
+
+#header #drop-down > p {
+  font-size: 0.7rem;
+  color: var(--name-color);
+  padding: 1.5rem 1rem;
+  padding-bottom: 0;
+}
+
+/* #header STYLE ENDS */

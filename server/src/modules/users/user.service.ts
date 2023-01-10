@@ -14,8 +14,6 @@ export class UserServices {
       username: userData.username,
       email: userData.email,
       password: hashedPassword,
-      gender: userData.gender,
-      dateOfBirth: userData.dateOfBirth,
     });
   }
 

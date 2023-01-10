@@ -39,7 +39,7 @@ export class Posts extends Model<IPosts> {
 
   @Column({
     type: DataType.TEXT,
-    allowNull: false,
+    allowNull: true,
   })
   postImg: string;
 

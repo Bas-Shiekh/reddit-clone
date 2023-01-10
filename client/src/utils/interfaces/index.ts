@@ -10,7 +10,19 @@ interface ILogin {
   password: string;
 }
 
+interface IUser {
+  user: {
+    id: number;
+    username: string;
+    userImg: string;
+    gender: string;
+    bio: string;
+    email: string;
+  }
+}
+
 export type {
   ILogin,
   IRegister,
+  IUser,
 }

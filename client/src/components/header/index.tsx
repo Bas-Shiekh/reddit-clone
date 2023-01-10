@@ -1,9 +1,31 @@
-import { RedditCircleFilled, SearchOutlined, UserOutlined } from "@ant-design/icons";
-import { Popover } from "antd";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import axios from "../../api/axios";
+import { message, Popover } from "antd";
+import {
+  DownOutlined,
+  RedditCircleFilled,
+  SearchOutlined,
+  UserOutlined
+} from "@ant-design/icons";
+
+import { logout } from '../../features/auth/authSlice';
+import { IUser } from "../../utils/interfaces";
 import './index.css'
 
-const Header = ({id, username}: {username: string, id: number}) => {
+
+
+const Header = ({ user }: IUser) => {
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+      const response = await axios.get('auth/logout', { withCredentials: true });
+      if (response.status === 200) {
+        message.success(response.data.message);
+        dispatch(logout());
+      } else throw response;
+  }
+  
   return (
     <header id="header">
       <div>
@@ -24,33 +46,52 @@ const Header = ({id, username}: {username: string, id: number}) => {
         <input type="search" placeholder="Search Reddit" />
       </div>
       <div>
-        <Link to='login' id="login-btn">log in</Link>
-        <Popover
-          placement="bottom"
-          content={
-            <div
-              className="dropDown"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "1rem",
-                padding: "0.5rem 0",
-              }}
-            >
-              <Link to=''>view Profile</Link>
-              <Link to="/">Logout</Link>
+        {user?.username ? 
+          <Popover
+            placement="bottom"
+            content={
+              <div
+                className="dropDown"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                  padding: "0.5rem 0",
+                  width: '100%'
+                }}
+              >
+                <Link to='' style={{color: 'var(--black)'}} className='header-link'>view Profile</Link>
+                <Link to="/"
+                  style={{ color: 'var(--black)' }}
+                  className='header-link'
+                  onClick={() => {
+                    dispatch(logout());
+                    handleLogout();
+                  }}
+                >Logout</Link>
+              </div>
+            }
+            trigger="click"
+            className="drop"
+          >
+            <div className="user-popup">
+              <img src={user?.userImg} alt={user?.username} className='header-profile-img' />
+              <div>
+                <p>{user?.username}</p>
+                <label>1 karma</label>
+              </div>
+              <DownOutlined style={{ fontSize: '0.9rem', opacity: '0.5', color: 'var(--black)'}} />
             </div>
-          }
-          trigger="click"
-          className="drop"
-        >
-          <div>
-            <UserOutlined style={{ fontSize: '1.5rem', opacity: '0.5' }} />
-            <h1>{username}</h1>
-          </div>
-        </Popover>
-        <p>{username}{id}</p>
+          </Popover>
+        : 
+          <>
+            <Link to='login' id="login-btn">log in</Link>
+            <div className="user-popup">
+              <UserOutlined style={{ fontSize: '1.5rem', opacity: '0.5' }} />
+              <DownOutlined style={{ fontSize: '0.9rem', opacity: '0.5' }} />
+            </div>
+          </>
+        }
       </div>
     </header>
   )

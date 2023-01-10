@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from '../../api/axios';
 import { Button, Form, Input, message, Spin } from 'antd';
-import { GoogleOutlined, AppleFilled, UserOutlined, LockOutlined } from '@ant-design/icons';
+import { GoogleOutlined, UserOutlined, LockOutlined } from '@ant-design/icons';
 import { ILogin } from '../../utils/interfaces';
 import { EmailSchema, PasswordSchema } from '../../utils/schemas';
 import { background } from '../../assets';
@@ -16,20 +16,19 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (user) navigate('/');
-  }, [navigate, user])
+  }, [navigate, user]);
 
   const onFinish = async (values: ILogin) => {
     try {
-      setLoading(true)
-      const response = await axios.post('auth/login', values, { withCredentials: true });
+      setLoading(true);
+      const response = await axios.post('/auth/login', values, { withCredentials: true });
       if (response.status === 200) {
         message.success('Logging in successfully');
-        setLoading(false)
         navigate('/');
-      }
+      } else throw response
+      setLoading(false);
     } catch (error: any) {
-      setLoading(false)
-      console.log(error)
+      setLoading(false);
       message.error(error.response.data.message);
     }
   }
@@ -49,10 +48,6 @@ const LoginPage = () => {
             <button type='button'>
               <GoogleOutlined />
               <label>continue with google</label>
-            </button>
-            <button type='button'>
-              <AppleFilled />
-              <label>continue with apple</label>
             </button>
           </div>
           <div className='hr'>

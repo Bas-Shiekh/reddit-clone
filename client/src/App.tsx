@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomePage, LoginPage, RegisterPage } from './pages';
+import { HomePage, LoginPage, RegisterPage, CreatePostPage } from './pages';
 import './App.css';
 
 function App() {
@@ -16,6 +16,10 @@ function App() {
     {
       path: "login",
       element: <LoginPage />,
+    },
+    {
+      path: "post/create",
+      element: <CreatePostPage />,
     },
   ]);
 

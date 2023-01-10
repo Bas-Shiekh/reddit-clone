@@ -39,7 +39,7 @@ export class AuthController {
   }
 
   @Public()
-  @UseFilters(HttpExceptionFilter)
+  // @UseFilters(HttpExceptionFilter)
   @Post('login')
   @HttpCode(HttpStatus.OK)
   async login(
@@ -53,13 +53,17 @@ export class AuthController {
     return { accessToken };
   }
 
-  @UseGuards(AtGuard)
   @Get('logout')
   @HttpCode(HttpStatus.OK)
-  logout(@GetCurrentUserId() userId: number) {
+  logout(
+    @Res({ passthrough: true }) response: Response,
+    @GetCurrentUserId() userId: number,
+  ) {
+    response.clearCookie('token');
     return this.authServices.logout(userId);
   }
 
+  @UseGuards(RtGuard)
   @UseFilters(HttpExceptionFilter)
   @Get('user')
   @HttpCode(HttpStatus.OK)

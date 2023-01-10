@@ -1,0 +1,70 @@
+
+
+#homepage .create-post-row {
+  width: 100%;
+  background-color: var(--white);
+  padding: 0.4rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  outline: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+#homepage .create-post-row a {
+  width: 40px;
+  height: 40px;
+}
+
+#homepage .create-post-row img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 0.2rem;
+  outline: 1px solid var(--shadow-color);
+  background-color: var(--search-color);
+  box-shadow: 0 0 2px 2px var(--shadow-color);
+}
+
+#homepage .create-post-row input {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 1rem;
+  outline: 0.3px solid var(--shadow-color);
+  border: 0;
+  background-color: var(--search-color);
+  border-radius: 5px;
+  margin: 0 0.5rem;
+}
+
+#homepage .create-post-row input::placeholder {
+  color: var(--second-search-color);
+}
+
+#homepage .create-post-row input:hover {
+  outline: 1px solid var(--blue);
+  background-color: inherit;
+}
+
+#homepage .create-post-row input:focus {
+  border: 0;
+  outline: 0;
+  outline: 1px solid var(--blue);
+  background-color: inherit;
+}
+
+#homepage .create-post-row span {
+  color: var(--second-search-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#homepage .create-post-row span:hover {
+  background-color: var(--search-color);
+}

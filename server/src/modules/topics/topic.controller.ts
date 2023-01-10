@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class TopicController {
   @Get()
   get() {
-    return 'hello ';
+    return 'hello';
   }
 }

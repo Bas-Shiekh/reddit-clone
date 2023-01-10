@@ -21,11 +21,11 @@ const RegisterPage = () => {
   const onFinish = async (values: IRegister) => {
     try {
       setLoading(true)
-      const response = await axios.post('auth/register', values, {withCredentials: true});
+      const response = await axios.post('auth/register', values, { withCredentials: true });
       if (response.status === 201) {
         message.success('Created account');
         navigate('/')
-      }
+      } else throw response;
     } catch (error: any) {
       setLoading(false)
       message.error(error.response.data.message);

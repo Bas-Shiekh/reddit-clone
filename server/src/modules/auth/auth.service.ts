@@ -41,7 +41,14 @@ export class AuthServices {
 
   async getAuthUser(userId: number) {
     const userData = await this.userServices.getUserById(userId);
-    return userData;
+    return {
+      id: userData.id,
+      username: userData.username,
+      userImg: userData.userImg,
+      bio: userData.bio,
+      email: userData.email,
+      gender: userData.gender,
+    };
   }
 
   // get user method for login route

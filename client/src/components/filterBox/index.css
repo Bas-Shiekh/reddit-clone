@@ -1,0 +1,39 @@
+#homepage .filter-post-row {
+  width: 100%;
+  background-color: var(--white);
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  outline: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+#homepage .filter-post-row button {
+  outline: 0;
+  border: 0;
+  padding: 0.3rem 1rem;
+  background-color: var(--search-color);
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--second-search-color);
+  font-weight: 500;
+}
+
+#homepage .filter-post-row span {
+  color: var(--second-search-color);
+  font-size: 1.4rem;
+}
+
+#homepage .filter-post-row .btn-active {
+  color: var(--blue);
+}
+
+#homepage .filter-post-row .btn-active span {
+  color: var(--blue);
+}

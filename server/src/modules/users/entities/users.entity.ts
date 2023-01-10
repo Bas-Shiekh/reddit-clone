@@ -40,7 +40,8 @@ export class Users extends Model<IUsers> {
   @Column({
     type: DataType.TEXT,
     allowNull: false,
-    defaultValue: 'https://www.shorturl.at/mzFI7',
+    defaultValue:
+      'https://i.ibb.co/kKPN0DZ/kisspng-social-media-reddit-computer-icons-logo-reddit-logo-social-icon-5ab1498d75d271-0862203515215.png',
   })
   userImg: string;
 

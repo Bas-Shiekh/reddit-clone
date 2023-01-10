@@ -32,7 +32,7 @@ body {
   --lines: #e5e5e5;
   --second-color: #919191;
   --main-color: #ff4500;
-  --background-color: #c6d0d8;
+  --background-color: #d2dee7;
   --search-color: #F6F7F8;
   --second-search-color: #818181;
   --shadow-color: #efefef;
@@ -42,4 +42,5 @@ body {
   --trend-color: #ececec;
   --trend-second-color: #d2d2d2;
   --arrow-color: #00c608;
+  --border-color: #bbbbbb;
 }

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { IUser } from "../../utils/interfaces";
 import './index.css';
 
-const CreatePost = ({ user }: IUser) => {
+const CreatePost = ({ user }: { user: IUser }) => {
   const navigate = useNavigate();
 
   const createPostCheck = () => {

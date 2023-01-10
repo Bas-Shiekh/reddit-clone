@@ -3,7 +3,6 @@ import { AuthModule } from './auth/auth.module';
 import { CommentModule } from './comments/comment.module';
 import { PostModule } from './posts/post.module';
 import { SaveModule } from './saves/save.module';
-import { TopicModule } from './topics/topic.module';
 import { UserModule } from './users/user.module';
 import { VoteModule } from './votes/vote.module';
 
@@ -13,7 +12,6 @@ import { VoteModule } from './votes/vote.module';
     PostModule,
     UserModule,
     VoteModule,
-    TopicModule,
     SaveModule,
     AuthModule,
   ],
@@ -23,7 +21,6 @@ import { VoteModule } from './votes/vote.module';
     PostModule,
     UserModule,
     VoteModule,
-    TopicModule,
     SaveModule,
     AuthModule,
   ],

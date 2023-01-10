@@ -1,4 +1,4 @@
-import { IsNotEmpty, MaxLength } from 'class-validator';
+import { IsNotEmpty, MaxLength, ValidateIf } from 'class-validator';
 
 export class CreatePostDto {
   @MaxLength(300)
@@ -6,4 +6,10 @@ export class CreatePostDto {
 
   @IsNotEmpty()
   content: string;
+
+  @ValidateIf((object, value) => value !== null)
+  postImg!: string | null;
+
+  @ValidateIf((object, value) => value !== null)
+  topicName!: string | null;
 }

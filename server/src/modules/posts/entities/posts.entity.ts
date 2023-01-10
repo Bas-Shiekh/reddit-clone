@@ -6,13 +6,7 @@ import {
   ForeignKey,
   HasMany,
 } from 'sequelize-typescript';
-import {
-  Votes,
-  Users,
-  Topics,
-  Saves,
-  Comments,
-} from 'src/modules/index.models';
+import { Votes, Users, Saves, Comments } from 'src/modules/index.models';
 import { IPosts } from 'src/core/interfaces/index.interface';
 
 @Table
@@ -43,11 +37,14 @@ export class Posts extends Model<IPosts> {
   })
   postImg: string;
 
+  @Column({
+    type: DataType.TEXT,
+    allowNull: true,
+  })
+  topicName: string;
+
   @ForeignKey(() => Users)
   userId: number;
-
-  @ForeignKey(() => Topics)
-  topicId: number;
 
   @HasMany(() => Comments)
   comments: Comments[];

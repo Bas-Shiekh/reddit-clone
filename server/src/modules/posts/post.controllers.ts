@@ -13,7 +13,7 @@ export class PostsController {
     return this.postServices.getAllPosts();
   }
 
-  @Post()
+  @Post('submit')
   addPost(@Body() postData: CreatePostDto, @GetCurrentUserId() userId: number) {
     return this.postServices.addPost(postData, userId);
   }

@@ -1,5 +1,6 @@
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, message, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import axios from "../../api/axios";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -13,10 +14,10 @@ interface IPostForm {
 }
 
 const options = [
-  { value: 'games'},
-  { value: 's' },
-  { value: 'd' },
-  { value: 'a' }
+  { value: 'Games'},
+  { value: 'News' },
+  { value: 'Sport' },
+  { value: 'Fashion' }
 ];
 
 const CreatePostPage = () => {
@@ -29,14 +30,15 @@ const CreatePostPage = () => {
 
   const onFinish = async (values: IPostForm) => {
     console.log(values);
-    // try {
-    //   const response = await axios.post('', values);
-    //   if (response.status === 201) {
-    //     message.success(response.data.message);
-    //   } else throw response
-    // } catch (error: any) {
-    //   message.error(error.response.data.message);
-    // }
+    try {
+      const response = await axios.post('posts/submit', values);
+      if (response.status === 201) {
+        message.success(response.data.message);
+        navigate('/');
+      } else throw response
+    } catch (error: any) {
+      message.error(error.response.data.message);
+    }
   }
 
   return (
@@ -64,7 +66,7 @@ const CreatePostPage = () => {
           }}>
             <TextArea placeholder="Press content here"></TextArea>
           </Form.Item>
-          <Form.Item style={{ width: '100%' }} name="tags">
+          <Form.Item style={{ width: '100%' }} name="topicName">
             <Select
               showArrow
               options={options}

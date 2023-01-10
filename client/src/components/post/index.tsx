@@ -1,9 +1,14 @@
-import { CommentOutlined, DownOutlined, SaveOutlined, UpOutlined } from "@ant-design/icons";
-import { IUser } from "../../utils/interfaces";
+import {
+  CommentOutlined,
+  DownOutlined,
+  SaveOutlined,
+  UpOutlined
+} from "@ant-design/icons";
+import { IPostProps } from "../../utils/interfaces";
 import './index.css';
 
-const Post = ({ user }: IUser) => {
-  console.log(user?.userImg)
+const Post = ({ user, post }: IPostProps) => {
+
   return (
     <div className='post'>
       <div className='votes'>
@@ -18,14 +23,14 @@ const Post = ({ user }: IUser) => {
           <label> . posted 1 day ago</label>
         </div>
         <div className='post-title'>
-          <h1>Hello from title</h1>
+          <h1>{post.title}</h1>
         </div>
         <div className='post-description'>
-          <p>hello from description</p>
+          <p>{post.content}</p>
         </div>
-        <div className='post-img'>
-          <img src={user?.userImg} alt={user?.username} />
-        </div>
+        {post.postImg && <div className='post-img'>
+          <img src={post.postImg} alt={user?.username} />
+        </div>}
         <div className='post-events'>
           <button type="button">
             <CommentOutlined />

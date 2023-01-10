@@ -15,7 +15,7 @@ import './index.css'
 
 
 
-const Header = ({ user }: IUser) => {
+const Header = ({ user }: { user: IUser }) => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {

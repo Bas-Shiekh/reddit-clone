@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { Public } from '../auth/common/decorators';
+import { GetCurrentUserId, Public } from '../auth/common/decorators';
 import { CreatePostDto } from './dto/createPost.dto';
 import { PostServices } from './post.service';
 
@@ -14,7 +14,7 @@ export class PostsController {
   }
 
   @Post()
-  addPost(@Body() postData: CreatePostDto) {
-    return postData;
+  addPost(@Body() postData: CreatePostDto, @GetCurrentUserId() userId: number) {
+    return this.postServices.addPost(postData, userId);
   }
 }

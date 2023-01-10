@@ -11,7 +11,7 @@ export class PostServices {
     return await this.postRepository.findAll();
   }
 
-  async addPost(postData: CreatePostDto) {
-    return await this.postRepository.create(postData);
+  async addPost(postData: CreatePostDto, userId: number) {
+    return this.postRepository.create({ ...postData, userId });
   }
 }

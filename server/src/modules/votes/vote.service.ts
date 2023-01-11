@@ -35,7 +35,7 @@ export class VoteServices {
     return await this.voteRepository.findAll({
       where: { postId },
       attributes: [
-        [sequelize.fn('sum', sequelize.col('postId')), 'totalVotes'],
+        [sequelize.fn('sum', sequelize.col('status')), 'totalVotes'],
       ],
       group: ['postId'],
     });

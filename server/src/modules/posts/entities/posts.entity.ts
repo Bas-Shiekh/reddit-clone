@@ -5,6 +5,7 @@ import {
   DataType,
   ForeignKey,
   HasMany,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { Votes, Users, Saves, Comments } from 'src/modules/index.models';
 import { IPosts } from 'src/core/interfaces/index.interface';
@@ -45,6 +46,9 @@ export class Posts extends Model<IPosts> {
 
   @ForeignKey(() => Users)
   userId: number;
+
+  @BelongsTo(() => Users)
+  user: Users;
 
   @HasMany(() => Comments)
   comments: Comments[];

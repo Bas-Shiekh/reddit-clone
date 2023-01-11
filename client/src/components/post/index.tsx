@@ -1,3 +1,6 @@
+import { useState } from "react";
+import axios from "../../api/axios";
+import { Avatar, Form, Input } from "antd";
 import {
   CommentOutlined,
   DownOutlined,
@@ -5,11 +8,35 @@ import {
   UpOutlined
 } from "@ant-design/icons";
 import { formatDistance, parseISO } from "date-fns";
-import { IPostProps } from "../../utils/interfaces";
+import { Comment } from '../';
+import { IComment, IPostProps } from "../../utils/interfaces";
 import './index.css';
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const Post = ({ post }: IPostProps) => {
-  console.log(post);
+  const [comments, setComments] = useState<IComment[] | null>(null);
+  const user = useSelector((state: any) => state.auth.user);
+  const navigate = useNavigate();
+
+  const getComments = async () => {
+    const response = await axios.get(`comments/${post.id}`);
+    if (response.status === 200) {
+      setComments(response.data);
+    }
+  }
+
+  const onFinish = async ({ content }: { content: string }) => {
+    if (!user) {
+      navigate('login')
+    } else {
+      const response = await axios.post(`comments/${post.id}/create`, {content});
+      if (response.status === 201) {
+        console.log(response.data);
+      }
+    }
+  } 
+
   return (
     <div className='post'>
       <div className='votes'>
@@ -19,7 +46,7 @@ const Post = ({ post }: IPostProps) => {
       </div>
       <article>
         <div className='post-info'>
-          <img src={post.user.userImg} alt={post.user.username} />
+          <Avatar src={post.user.userImg} alt={post.user.username} style={{backgroundColor: '#cdcdcd', padding: '0.1rem'}} />
           <p>{post.user.username}</p>
           <label> . posted {formatDistance(parseISO(post?.createdAt), new Date(), { addSuffix: true })}</label>
         </div>
@@ -33,7 +60,7 @@ const Post = ({ post }: IPostProps) => {
           <img src={post.postImg} alt={post?.user.username} />
         </div>}
         <div className='post-events'>
-          <button type="button">
+          <button type="button" onClick={getComments}>
             <CommentOutlined />
             <label>{post.commentsCount} Comments</label>
           </button>
@@ -42,6 +69,10 @@ const Post = ({ post }: IPostProps) => {
             <label>Save</label>
           </button>
         </div>
+        <section id="comments-container">
+          <Form onFinish={onFinish}><Form.Item name='content'><Input placeholder="Press your comment"/></Form.Item></Form>
+          {comments?.map((comment: IComment, i: number) => <Comment comment={comment} key={i} />)}
+        </section>
       </article>
     </div>
   )

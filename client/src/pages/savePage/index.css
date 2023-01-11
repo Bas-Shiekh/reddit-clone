@@ -1,0 +1,7 @@
+#save-page {
+  padding: 5rem 6rem 0;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--background-color);
+  overflow: auto;
+}

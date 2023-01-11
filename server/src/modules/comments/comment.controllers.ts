@@ -2,6 +2,7 @@ import { Controller } from '@nestjs/common';
 import { Body, Get, Param, Post } from '@nestjs/common/decorators';
 import { GetCurrentUserId, Public } from '../auth/common/decorators';
 import { CommentServices } from './comment.service';
+import { CreateCommentDto } from './dto/createComment.dto';
 
 @Controller('comments')
 export class CommentsController {
@@ -15,11 +16,10 @@ export class CommentsController {
 
   @Post(':postId/create')
   addComment(
-    @Body('content') content: string,
+    @Body('content') content: CreateCommentDto,
     @Param('postId') postId: number,
     @GetCurrentUserId() userId: number,
   ) {
-    console.log(content)
     return this.commentServices.addComment({ content, postId, userId });
   }
 }

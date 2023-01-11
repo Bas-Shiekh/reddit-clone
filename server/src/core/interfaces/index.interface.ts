@@ -38,7 +38,7 @@ export interface ITopics {
 
 export interface IVotes {
   id: number;
-  status: boolean;
+  status: number;
   postId: number;
   userId: number;
 }

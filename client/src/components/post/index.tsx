@@ -4,11 +4,12 @@ import {
   SaveOutlined,
   UpOutlined
 } from "@ant-design/icons";
+import { formatDistance, parseISO } from "date-fns";
 import { IPostProps } from "../../utils/interfaces";
 import './index.css';
 
-const Post = ({ user, post }: IPostProps) => {
-
+const Post = ({ post }: IPostProps) => {
+  console.log(post);
   return (
     <div className='post'>
       <div className='votes'>
@@ -18,9 +19,9 @@ const Post = ({ user, post }: IPostProps) => {
       </div>
       <article>
         <div className='post-info'>
-          <img src={user?.userImg} alt={user?.username} />
-          <p>{user?.username}</p>
-          <label> . posted 1 day ago</label>
+          <img src={post.user.userImg} alt={post.user.username} />
+          <p>{post.user.username}</p>
+          <label> . posted {formatDistance(parseISO(post?.createdAt), new Date(), { addSuffix: true })}</label>
         </div>
         <div className='post-title'>
           <h1>{post.title}</h1>
@@ -29,12 +30,12 @@ const Post = ({ user, post }: IPostProps) => {
           <p>{post.content}</p>
         </div>
         {post.postImg && <div className='post-img'>
-          <img src={post.postImg} alt={user?.username} />
+          <img src={post.postImg} alt={post?.user.username} />
         </div>}
         <div className='post-events'>
           <button type="button">
             <CommentOutlined />
-            <label>Comments</label>
+            <label>{post.commentsCount} Comments</label>
           </button>
           <button type="button">
             <SaveOutlined />

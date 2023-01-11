@@ -25,13 +25,17 @@ interface IPost {
   content: string;
   topicName: string | null;
   postImg: string | null;
-  updateAt: string;
-  createAt: string;
+  updatedAt: string;
+  createdAt: string;
   userId: number;
+  commentsCount: number;
+  user: {
+    userImg: string;
+    username: string;
+  }
 }
 
 interface IPostProps {
-  user: IUser;
   post: IPost
 }
 

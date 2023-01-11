@@ -20,11 +20,9 @@ export class Votes extends Model<IVotes> {
   id: number;
 
   @Column({
-    type: DataType.BOOLEAN,
-    allowNull: true,
-    defaultValue: null,
+    type: DataType.INTEGER,
   })
-  status: boolean;
+  status: number;
 
   @ForeignKey(() => Users)
   @Column

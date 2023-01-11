@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
-import { Avatar, Form, Input } from "antd";
+import { Avatar, Form, Input, message } from "antd";
 import {
   CommentOutlined,
   DownOutlined,
@@ -60,6 +60,17 @@ const Post = ({ post }: IPostProps) => {
     }
   } 
 
+  const addSave = async () => {
+    if (!user) {
+      navigate('login')
+    } else {
+      const response = await axios.post(`save/${post.id}`);
+      if (response.status === 201) {
+        message.success(response.data.message)
+      }
+    }
+  } 
+
   return (
     <div className='post'>
       <div className='votes'>
@@ -90,13 +101,15 @@ const Post = ({ post }: IPostProps) => {
             <CommentOutlined />
             <label>{post.commentsCount} Comments</label>
           </button>
-          <button type="button">
+          <button type="button" onClick={addSave}>
             <SaveOutlined />
             <label>Save</label>
           </button>
         </div>
         <section id="comments-container">
-          <Form onFinish={onFinish}><Form.Item name='content'><Input placeholder="Press your comment"/></Form.Item></Form>
+          <Form onFinish={onFinish}>
+            <Form.Item name='content'><Input placeholder="Press your comment" /></Form.Item>
+          </Form>
           {comments?.map((comment: IComment, i: number) => <Comment comment={comment} key={i} />)}
         </section>
       </article>

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { HttpStatus } from '@nestjs/common/enums';
 import { HttpException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/sequelize';
-import { Posts, Saves } from '../index.models';
+import { Posts, Saves, Users } from '../index.models';
 
 @Injectable()
 export class SaveServices {
@@ -10,8 +10,21 @@ export class SaveServices {
 
   async allSavePosts(userId: number) {
     return await this.saveRepository.findAll({
+      attributes: {
+        exclude: ['createdAt', 'updatedAt', 'id', 'postId', 'userId'],
+      },
       where: { userId },
-      include: [{ model: Posts }],
+      include: [
+        {
+          model: Posts,
+          include: [
+            {
+              model: Users,
+              attributes: ['userImg', 'username'],
+            },
+          ],
+        },
+      ],
     });
   }
 

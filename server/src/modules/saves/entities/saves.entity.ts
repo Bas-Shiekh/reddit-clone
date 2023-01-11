@@ -4,6 +4,7 @@ import {
   DataType,
   Column,
   ForeignKey,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { ISaves } from 'src/core/interfaces/index.interface';
 import { Posts, Users } from 'src/modules/index.models';
@@ -21,6 +22,12 @@ export class Saves extends Model<ISaves> {
   @ForeignKey(() => Posts)
   postId: number;
 
+  @BelongsTo(() => Posts)
+  post: Posts;
+
   @ForeignKey(() => Users)
   userId: number;
+
+  @BelongsTo(() => Users)
+  user: Users;
 }

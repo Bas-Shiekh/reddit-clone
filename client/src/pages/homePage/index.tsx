@@ -32,7 +32,6 @@ const HomePage = () => {
       <FilterPostBox />
       <section className='posts-container'>
         {posts?.map((post: IPost, i: number) => <Post
-          user={auth.user}
           post={post} key={i}
           />)}
       </section>

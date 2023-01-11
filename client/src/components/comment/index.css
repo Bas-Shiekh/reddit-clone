@@ -1,0 +1,44 @@
+#homepage #comments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+#homepage #comments-container .comment {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#homepage #comments-container .comment .comment-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#homepage #comments-container .comment .comment-info p {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+#homepage #comments-container .comment .comment-info label {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: var(--second-color);
+}
+
+#homepage #comments-container .comment .comment-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#homepage #comments-container .comment .comment-content p {
+  width: 100%;
+  font-size: 0.95rem;
+  margin-left: 2.1rem;
+}

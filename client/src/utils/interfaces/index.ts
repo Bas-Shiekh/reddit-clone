@@ -39,10 +39,24 @@ interface IPostProps {
   post: IPost
 }
 
+interface IComment {
+  id: number;
+  postId: number;
+  userId: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  user: {
+    username: string;
+    userImg: string;
+  }
+}
+
 export type {
   ILogin,
   IRegister,
   IUser,
   IPost,
   IPostProps,
+  IComment,
 }

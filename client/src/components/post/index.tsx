@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import { Avatar, Form, Input } from "antd";
 import {
@@ -16,8 +16,18 @@ import { useNavigate } from "react-router";
 
 const Post = ({ post }: IPostProps) => {
   const [comments, setComments] = useState<IComment[] | null>(null);
+  const [votesNumber, setVotesNumber] = useState<number>(0)
+  const [voteStatus, setVoteStatus] = useState<string | null>(null)
   const user = useSelector((state: any) => state.auth.user);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const getVotesNumber = async () => {
+      const response = await axios.get(`post/${post.id}/vote`);
+      setVotesNumber(response.data[0].totalVotes)
+    }
+    getVotesNumber();
+  }, [post.id])
 
   const getComments = async () => {
     const response = await axios.get(`comments/${post.id}`);
@@ -37,12 +47,28 @@ const Post = ({ post }: IPostProps) => {
     }
   } 
 
+  const vote = async (status: string) => {
+    if (!user) {
+      navigate('login')
+    } else {
+      const response = await axios.post(`post/${post.id}/vote/${status}`);
+      if (response.status === 201) {
+        console.log(response.data)
+        setVoteStatus(status);
+        setVotesNumber((prev) => Number(prev) + response.data.status)
+      }
+    }
+  } 
+
   return (
     <div className='post'>
       <div className='votes'>
-        <UpOutlined />
-        <p>0</p>
-        <DownOutlined />
+        <UpOutlined onClick={() => vote('up')}
+          style={{ color: voteStatus === 'up' ? 'var(--main-color)' : 'var(--second-color)' }} />
+        <p>{votesNumber}</p>
+        <DownOutlined onClick={() => vote('down')}
+          style={{ color: voteStatus === 'down' ? 'var(--blue)' : 'var(--second-color)' }}
+        />
       </div>
       <article>
         <div className='post-info'>
